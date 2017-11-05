@@ -12,3 +12,6 @@ obj/
 # Django stuff:
 *.log
 
+#Visual Studio stuff
+.vs/
+
