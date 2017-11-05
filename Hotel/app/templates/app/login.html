@@ -2,24 +2,46 @@
 
 {% block content %}
 
+
+<!-- Display messages -->
+
+{% if messages %}
+    {% for message in messages %}
+         {{message}}
+    {% endfor %}
+{% endif %}
+
+
+    <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="block">
+                    <h3>User information</h3>
+                    <p> Login: <input type="text" name="user_name" placeholder="user_name" maxlength="10" required/> </p>
+                    <p> Password: <input type="password" name="password"  placeholder="password" required/> </p>
+                    <p> <input type="submit" value="Login"></p>
+                </div>
+            </div>
+    </form>
+<!--
 <h2>{{ title }}</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             <form action="." method="post" class="form-horizontal">
-                {% csrf_token %}
+                ##}% csrf_token %}
                 <h4>Use a local account to log in.</h4>
                 <hr />
                 <div class="form-group">
                     <label for="id_username" class="col-md-2 control-label">User name</label>
                     <div class="col-md-10">
-                        {{ form.username }}
+                        ##}{ form.username }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="id_password" class="col-md-2 control-label">Password</label>
                     <div class="col-md-10">
-                        {{ form.password }}
+                        ##}{form.password }}
                     </div>
                 </div>
                 <div class="form-group">
@@ -28,9 +50,9 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                {% if form.errors %}
+                ##}% if form.errors %}
                 <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                {% endif %}
+                ##}% endif %}
             </form>
         </section>
     </div>
@@ -38,7 +60,7 @@
         <section id="socialLoginForm"></section>
     </div>
 </div>
-
+    -->
 {% endblock %}
 
 
