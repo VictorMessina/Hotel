@@ -30,6 +30,13 @@
         </script>
     </head>
     <body>
+        <!-- Display messages -->
+
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
 
         <h1> Insira os dados da sua conta: </h1>
 

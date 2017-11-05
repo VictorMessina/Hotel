@@ -2,12 +2,13 @@
 Definition of views.
 """
 
+from datetime import datetime
 from app.models import *
 from app.postgres import nationality_functions, user_functions, user_type_functions, user_info_functions
-from django.shortcuts import render, render_to_response
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from datetime import datetime
 
 
 def sign_up(request):
@@ -42,13 +43,11 @@ def sign_up(request):
         description = request.POST.get('description')
 
         if user_functions.find_user(user_name) is not None: 
-            
-            print('User already registed, please try again')
+            messages.error(request,'User already registed, please try again')
             return HttpResponseRedirect('/signup')
 
         elif password != password2:
-
-            print("password don't match")
+            messages.error(request, "password don't match")
             return HttpResponseRedirect('/signup')
 
         else:
@@ -56,16 +55,35 @@ def sign_up(request):
                 user_type = user_type_functions.create_user_type(identification_number, resident, last_address, nationality_id)
                 user = user_functions.create_user(user_name, password, description)
                 user_info = user_info_functions.create_user_info(first_name, last_name, email, telephone, cellphone, gender, birthday, identification_number)
+                messages.success(request,'user registered')
                 return HttpResponseRedirect('/')
             except Exception:
-                print("user not registered")
+                messages.error(request,'user not registered')
                 return HttpResponseRedirect('/signup')
 
-# fazer a pagina de perfil
+
+def login(request):
+    if request.method == "GET":
+        return render(request, 'app/login.html')
+    else:
+        user_name = request.POST.get('user_name')
+        password = request.POST.get('password')
+        validation = user_functions.validate_login(user_name, password)
+
+        if validation is True:
+            return HttpResponseRedirect('/profile')
+        else:
+            messages.error(request, 'Username or password is wrong, try again')
+            return HttpResponseRedirect('/login')
+
 
 def nationality_details(request, nationality_id):
     nationality = nationality_functions.find_nationality_by_id(nationality_id)
     return render_to_response('app/nationalitydetails.html',{'nationality': nationality})
+
+
+def profile(request):
+    return render(request,'app/profile.html')
 
 
 def home(request):
