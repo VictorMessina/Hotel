@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h2>Local do quarto: {{room.fk_place.description}}</h2>
+
+    {% if room.fk_place.kitchen is False %}
+        <h2> cozinha: não tem </h2>
+        {% elif room.fk_place.kitchen is True %}
+            <h2> cozinha: tem </h2>
+    {% endif %}
+
+    {% if room.fk_place.study_room is False %}
+        <h2> sala de estudos: não tem </h2>
+        {% elif room.fk_place.study_room is True %}
+            <h2> sala de estudos: tem </h2>
+    {% endif %}
+
+    <p>------------------------------------------------------</p>
+
+    <h2>Quarto: {{room.door_number}}</h2>
+    
+    {% if room.fk_room_info.bathroom_inside is False %}
+        <h2> Banheiro interno: não tem </h2>
+        {% elif room.fk_room_info.bathroom_inside is True %}
+            <h2> Banheiro interno: tem </h2>
+    {% endif %}
+
+    {% if room.fk_room_info.bath is False %}
+        <h2> Banheira: não tem </h2>
+        {% elif room.fk_room_info.bath is True %}
+            <h2> Banheira: tem </h2>
+    {% endif %}
+
+    {% if room.fk_room_info.double_bed is False %}
+        <h2> cama de casal: não tem </h2>
+        {% elif room.fk_room_info.double_bed is True %}
+            <h2>cama de casal: tem </h2>
+    {% endif %}
+
+    {% if room.fk_room_info.study_table is False %}
+        <h2> mesa de estudo: não tem </h2>
+        {% elif room.fk_room_info.study_table is True %}
+            <h2> mesa de estudo: tem </h2>
+    {% endif %}
+
+    {% if room.fk_room_info.closet is False %}
+        <h2> closet: não tem </h2>
+        {% elif room.fk_room_info.closet is True %}
+            <h2> closet: tem </h2>
+    {% endif %}
+
+    {% if room.fk_room_info.tv is False %}
+        <h2> TV: não tem </h2>
+        {% elif room.fk_room_info.tv is True %}
+            <h2> TV: tem </h2>
+    {% endif %}
+
+    {% if room.fk_room_info.mirror is False %}
+        <h2> mirror: não tem </h2>
+        {% elif room.fk_room_info.mirror is True %}
+            <h2> mirror: tem </h2>
+    {% endif %}
+    
+    {% if room.fk_room_info.nightstand is False %}
+        <h2> criado mudo: não tem </h2>
+        {% elif room.fk_room_info.nightstand is True %}
+            <h2> criado mudo: tem </h2>
+    {% endif %}
+
+    <h2>tamanho do quarto: {{room.fk_room_info.fk_room_size.description}}</h2>
+
+</body>
+</html>
