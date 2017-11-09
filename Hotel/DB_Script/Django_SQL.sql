@@ -5,6 +5,25 @@ ADD FOREIGN KEY(user_info_id)
 REFERENCES app_user (user_id)
 ON DELETE CASCADE;
 
+--------- Insert app_place ---------
+
+insert into app_place (description,kitchen,study_room) values ('cangalho_1', True, True);
+insert into app_place (description,kitchen,study_room) values ('cangalho_2', True, False);
+insert into app_place (description,kitchen,study_room) values ('cangalho_3', True, False);
+
+--------- Insert app_room_size ---------
+
+insert into app_roomsize (description) values ('large');
+insert into app_roomsize (description) values ('medium');
+insert into app_roomsize (description) values ('small');
+
+--------- Insert app_room_info ---------
+
+insert into app_roominfo (bathroom_inside,bath,double_bed,study_table,closet,tv,mirror,nightstand,fk_room_size_id) values (True,True,False,True,True,True,True,True,2);
+
+--------- Insert app_room ---------
+
+insert into app_room (door_number,availability,share,fk_room_info_id,fk_place_id) values (9,False,False,1,1);
 
 --------- Insert app_user_privileges ---------
 
@@ -274,6 +293,10 @@ insert into app_nationality (country) values ('Zimbabué');
 
 select * from app_nationality;
 select * from app_userprivileges;
+select * from app_roomsize;
+select * from app_place;
+select * from app_roominfo;
+select * from app_room;
 
 select * from app_user;
 select * from app_usertype;

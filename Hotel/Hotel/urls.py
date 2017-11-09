@@ -18,7 +18,7 @@ urlpatterns = [
     # Examples:
     url(r'^signup$', app.views.sign_up, name='signup'),
     url(r'^profile$', app.views.profile, name='profile'),
-    url(r'^nationalitydetails/(?P<nationality_id>\d+)$', app.views.nationality_details, name='nationality_details'),
+    url(r'^roomsdetails/(?P<room_id>\d+)$', app.views.rooms_details, name='rooms_details'),
 
     url(r'^$', app.views.home, name='home'),
     url(r'^contact$', app.views.contact, name='contact'),

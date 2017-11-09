@@ -4,7 +4,7 @@ Definition of views.
 
 from datetime import datetime
 from app.models import *
-from app.postgres import nationality_functions, user_functions, user_type_functions, user_info_functions
+from app.postgres import nationality_functions, user_functions, user_type_functions, user_info_functions, rooms_functions 
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
@@ -77,13 +77,13 @@ def login(request):
             return HttpResponseRedirect('/login')
 
 
-def nationality_details(request, nationality_id):
-    nationality = nationality_functions.find_nationality_by_id(nationality_id)
-    return render_to_response('app/nationalitydetails.html',{'nationality': nationality})
-
-
 def profile(request):
     return render(request,'app/profile.html')
+
+
+def rooms_details(request, room_id):
+    room = rooms_functions.find_all_room_data(room_id)
+    return render_to_response('app/roomsdetails.html',{'room': room})
 
 
 def home(request):
