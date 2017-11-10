@@ -31,10 +31,12 @@ def generate_sha256(password):
 def validate_login(user_name, password):
     user_information = find_user(user_name)
     password_hash = generate_sha256(password)
-
-    if user_information.user_name is not None:
-        if user_information.password == password_hash:
-            return True
+    if user_information is not None:
+        if user_information.user_name is not None:
+            if user_information.password == password_hash:
+                return True
+            else:
+                return False
     else:
         return False
  
