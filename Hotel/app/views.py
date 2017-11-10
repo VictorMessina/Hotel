@@ -64,7 +64,7 @@ def sign_up(request):
 
 def login(request):
     if request.method == "GET":
-        return render(request, 'app/login.html')
+        return render(request, 'app/index.html')
     else:
         user_name = request.POST.get('user_name')
         password = request.POST.get('password')
@@ -74,7 +74,7 @@ def login(request):
             return HttpResponseRedirect('/profile')
         else:
             messages.error(request, 'Username or password is wrong, try again')
-            return HttpResponseRedirect('/login')
+            return HttpResponseRedirect('/')
 
 
 def profile(request):
