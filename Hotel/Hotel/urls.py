@@ -19,11 +19,7 @@ urlpatterns = [
     url(r'^signup$', app.views.sign_up, name='signup'),
     url(r'^profile$', app.views.profile, name='profile'),
     url(r'^roomsdetails/(?P<room_id>\d+)$', app.views.rooms_details, name='rooms_details'),
-
-    url(r'^$', app.views.home, name='home'),
-    url(r'^contact$', app.views.contact, name='contact'),
-    url(r'^about', app.views.about, name='about'),
-    url(r'^login$', app.views.login, name='login'),
+    url(r'^$', app.views.login, name='login'),
     #url(r'^login/$',
    #     django.contrib.auth.views.login,
     #    {
@@ -36,12 +32,12 @@ urlpatterns = [
            # }
         #},
         #name='login'),
-    url(r'^logout$',
-        django.contrib.auth.views.logout,
-        {
-            'next_page': '/',
-        },
-        name='logout'),
+    #url(r'^logout$',
+     #   django.contrib.auth.views.logout,
+      #  {
+       #     'next_page': '/',
+       # },
+        #name='logout'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
