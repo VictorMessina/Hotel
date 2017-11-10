@@ -1,0 +1,22 @@
+/*----------MSG ERRO E SUCESSO---------*/
+.error {
+    padding: 5px;
+    background-color: rgba(204,20,0,0.3);
+    width: 46%;
+    margin: 10px auto;
+    text-align: center;
+    color: white;
+    position: relative;
+    animation: anim 1s;
+}
+
+.success {
+    padding: 5px;
+    background-color: rgba(0,255,9,0.3);
+    width: 46%;
+    margin: 10px auto;
+    text-align: center;
+    color: white;
+    position: relative;
+    animation: anim 1s;
+}
