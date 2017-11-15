@@ -6,6 +6,23 @@
     <title>Profile</title>
 </head>
 <body>
+    <p> Nome de usuário: {{userData.user.user_name}} </p>
+    <p> Primeiro nome: {{userData.userInfo.first_name}} </p>
+    <p> Ultimo nome: {{userData.userInfo.last_name}} </p>
+    <p> Email: {{userData.userInfo.email}} </p>
+    <p> Telefone: {{userData.userInfo.telephone}} </p>
+    <p> Celular: {{userData.userInfo.cellphone}} </p>
+    <p> Genero: {{userData.userInfo.gender}} </p>
+    <p> Data de aniversário: {{userData.userInfo.birthday}} </p>
+    <p> Número de identificação: {{userData.userInfo.fk_user_type.identification_number}}</p>
 
+    {% if userData.userInfo.fk_user_type.resident is False %}
+        <p> Residente: não </p>
+        {% elif userData.userInfo.fk_user_type.resident is True %}
+            <p> Residente: sim </p>
+    {% endif %}
+
+    <p> Ultimo endereço: {{userData.userInfo.fk_user_type.last_address}}</p>
+    <p> Nacionalidade: {{userData.userInfo.fk_user_type.fk_nationality.country}} </p>
 </body>
 </html>
