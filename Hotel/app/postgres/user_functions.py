@@ -1,5 +1,5 @@
 import hashlib
-from app.models import User
+from app.models import User, UserInfo
 from app.postgres import user_privileges_functions
 
 
@@ -13,6 +13,18 @@ def create_user(user_name, password, description):
     except Exception:
         print("user not registered")
         return None
+
+
+def find_all_user_data(user_name):
+    try:
+        user = User.objects.get(user_name = user_name)
+        userInfo = UserInfo.objects.select_related().get(user_info_id = user.user_id)
+        data = {'user': user, 'userInfo': userInfo}
+        return data
+    except  User.DoesNotExist:
+        print("User not found")
+        return None
+
 
 def find_user(user_name):
     try:
