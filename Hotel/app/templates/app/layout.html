@@ -1,49 +1,116 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - My Django Application</title>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
-    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
-</head>
+<html lang="en">
+    <head>
+      {% load staticfiles %}
+      <meta charset="utf-8">
+      <title>{% block title %} {% endblock %}</title>
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta content="" name="keywords">
+      <meta content="" name="description">
 
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">Application name</a>
+      <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+      <meta property="og:title" content="">
+      <meta property="og:image" content="">
+      <meta property="og:url" content="">
+      <meta property="og:site_name" content="">
+      <meta property="og:description" content="">
+
+      <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="">
+      <meta name="twitter:title" content="">
+      <meta name="twitter:description" content="">
+      <meta name="twitter:image" content="">
+
+      <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+      <link href="{% static 'app/img/hotel-icon.png' %}" rel="shortcut icon">
+
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+      <!-- Bootstrap CSS File -->
+      <link href="{% static 'app/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+      <!-- Libraries CSS Files -->
+      <link href="{% static 'app/lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+      <link href="{% static 'app/lib/animate-css/animate.min.css' %}" rel="stylesheet">
+
+      <!-- Main Stylesheet File -->
+      <link href="{% static 'app/content/style.css' %}" rel="stylesheet">
+      <link href="{% static 'app/content/messages.css' %}" rel="stylesheet">
+
+    </head>
+
+    <body>
+    <!--========================== Hero Section ============================-->
+      <section id="hero">
+        <div class="hero-container">
+          <div class="wow fadeIn">
+            <div class="hero-logo">
+              <img class="" src="{% static 'app/img/logo.png' %}" alt="Imperial">
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                </ul>
-                {% include 'app/loginpartial.html' %}
+
+            <h1>Welcome to Messina web site</h1>
+            <h2>We create <span class="rotating">beautiful graphics, functional websites, working mobile apps</span></h2>
+            <div class="actions">
+                {% block login_form %} {% endblock %}
             </div>
+          </div>
         </div>
-    </div>
+      </section>
 
-    <div class="container body-content">
-{% block content %}{% endblock %}
-        <hr/>
-        <footer>
-            <p>&copy; {{ year }} - My Django Application</p>
-        </footer>
-    </div>
+    <!--========================== Header Section ============================-->
 
-    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
-    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
-    <script src="{% static 'app/scripts/respond.js' %}"></script>
-{% block scripts %}{% endblock %}
+      <header id="header">
+        <div class="container">
 
-</body>
+          <div id="logo" class="pull-left">
+            <a href="#hero"><img src="{% static 'app/img/logo.png' %}" alt="" title="" /></a>
+            <!-- Uncomment below if you prefer to use a text image -->
+            <!--<h1><a href="#hero">Header 1</a></h1>-->
+          </div>
+
+          <nav id="nav-menu-container">
+            <ul class="nav-menu">
+              {% block standard_nav %}{% endblock %}
+              {% block profile_nav %}{% endblock %}
+    <!--
+              <li class="menu-has-children"><a href="">Drop Down</a>
+                <ul>
+                  <li><a href="#">Drop Down 1</a></li>
+                  <li class="menu-has-children"><a href="#">Drop Down 2</a>
+                    <ul>
+                      <li><a href="#">Deep Drop Down 1</a></li>
+                      <li><a href="#">Deep Drop Down 2</a></li>
+                      <li><a href="#">Deep Drop Down 3</a></li>
+                      <li><a href="#">Deep Drop Down 4</a></li>
+                      <li><a href="#">Deep Drop Down 5</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Drop Down 3</a></li>
+                  <li><a href="#">Drop Down 4</a></li>
+                  <li><a href="#">Drop Down 5</a></li>
+                </ul>
+              </li>
+              -->
+            </ul>
+          </nav><!-- #nav-menu-container -->
+        </div>
+      </header><!-- #header -->
+
+      {% block body %} {% endblock %}
+
+      <!-- Required JavaScript Libraries -->
+      <script src="{% static 'app/lib/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'app/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'app/lib/superfish/hoverIntent.js' %}"></script>
+      <script src="{% static 'app/lib/superfish/superfish.min.js' %}"></script>
+      <script src="{% static 'app/lib/morphext/morphext.min.js' %}"></script>
+      <script src="{% static 'app/lib/wow/wow.min.js' %}"></script>
+      <script src="{% static 'app/lib/stickyjs/sticky.js' %}"></script>
+      <script src="{% static 'app/lib/easing/easing.js' %}"></script>
+
+      <!-- Template Specisifc Custom Javascript File -->
+      <script src="{% static 'app/scripts/custom.js' %}"></script>
+    </body>
 </html>

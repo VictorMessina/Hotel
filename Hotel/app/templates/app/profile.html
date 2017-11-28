@@ -1,11 +1,13 @@
-﻿<!DOCTYPE html>
+﻿{% extends 'app/layout.html' %}
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Profile</title>
-</head>
-<body>
+{% block title %} Profile {%endblock%}
+
+{% block profile_nav %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
     <p> Nome de usuário: {{userData.user.user_name}} </p>
     <p> Primeiro nome: {{userData.userInfo.first_name}} </p>
     <p> Ultimo nome: {{userData.userInfo.last_name}} </p>
@@ -24,5 +26,4 @@
 
     <p> Ultimo endereço: {{userData.userInfo.fk_user_type.last_address}}</p>
     <p> Nacionalidade: {{userData.userInfo.fk_user_type.fk_nationality.country}} </p>
-</body>
-</html>
+{% endblock %}
