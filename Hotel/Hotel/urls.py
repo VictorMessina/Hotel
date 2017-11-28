@@ -5,6 +5,7 @@ Definition of urls for Hotel.
 from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
+from django.contrib.auth.views import logout
 
 import app.forms
 import app.views
@@ -17,6 +18,7 @@ import app.views
 urlpatterns = [
     # Examples:
     url(r'^signup$', app.views.sign_up, name='signup'),
+    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
     url(r'^profile$', app.views.profile, name='profile'),
     url(r'^roomsdetails/(?P<room_id>\d+)$', app.views.rooms_details, name='rooms_details'),
     url(r'^$', app.views.login, name='login'),

@@ -105,6 +105,7 @@
     <Content Include="app\static\app\img\client-1.jpg" />
     <Content Include="app\static\app\img\client-2.jpg" />
     <Content Include="app\static\app\img\hero-bg.jpg" />
+    <Content Include="app\static\app\img\hotel-icon.png" />
     <Content Include="app\static\app\img\logo.png" />
     <Content Include="app\static\app\img\Messina.JPG" />
     <Content Include="app\static\app\img\not-available.jpg" />
