@@ -6,6 +6,7 @@ from datetime import datetime
 from app.models import *
 from app.postgres import nationality_functions, user_functions, user_type_functions, user_info_functions, rooms_functions 
 from django.contrib import messages
+from django.contrib.auth.views import logout
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
@@ -78,10 +79,17 @@ def login(request):
             return HttpResponseRedirect('/')
 
 
-def profile(request):
-    userData = user_functions.find_all_user_data("teste")
-    return render_to_response('app/profile.html', {'userData': userData})
+def logout(request):
+    logout(request)
 
+
+def profile(request):
+    try:
+        userData = user_functions.find_all_user_data(userData.user.user_name)
+        return render_to_response('app/profile.html', {'userData': userData})
+    except Exception:
+        messages.error(request,'Please login to access your profile')
+        return HttpResponseRedirect('/')
 
 def rooms_details(request, room_id):
     room = rooms_functions.find_all_room_data(room_id)
