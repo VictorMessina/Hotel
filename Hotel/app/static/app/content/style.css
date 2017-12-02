@@ -555,6 +555,56 @@ body.mobile-nav-active #mobile-nav-toggle {
   line-height: 24px;
 }
 
+/* User Section
+--------------------------------*/
+#user, #editProfile {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/services-bg.jpg") fixed center center;
+    background-size: cover;
+    padding: 80px 0 60px 0;
+}
+
+#user .user-item {
+    margin-bottom: 20px;
+}
+
+#user .user-icon {
+    float: left;
+    background: #03C4EB;
+    padding: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+    border: 1px solid #03C4EB;
+}
+
+#user .user-icon i {
+    color: #fff;
+    font-size: 24px;
+}
+
+#user .user-item:hover .user-icon {
+    background: #fff;
+}
+
+#user .user-item:hover .user-icon i {
+    color: #03C4EB;
+}
+
+#user .user-title {
+    margin-left: 80px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+#user .user-title a {
+    color: #111;
+}
+
+#user .user-description {
+    margin-left: 80px;
+    line-height: 24px;
+}
+
 /* Subscribe Section
 --------------------------------*/
 #subscribe {
