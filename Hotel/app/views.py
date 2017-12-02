@@ -72,8 +72,9 @@ def login(request):
         validation = user_functions.validate_login(user_name, password)
 
         if validation is True:
+            all_nationality = Nationality.objects.all()
             userData = user_functions.find_all_user_data(user_name)
-            return render_to_response('app/profile.html',{'userData': userData})
+            return render_to_response('app/profile.html',{'userData': userData, 'all_nationality': all_nationality})
         else:
             messages.error(request, 'Username or password is wrong, try again')
             return HttpResponseRedirect('/')
