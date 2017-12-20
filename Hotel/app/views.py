@@ -2,15 +2,16 @@
 Definition of views.
 """
 
+import json
 from datetime import datetime
 from app.models import *
 from app.postgres import nationality_functions, user_functions, user_type_functions, user_info_functions, rooms_functions 
 from django.contrib import messages
 from django.contrib.auth.views import logout
+from django.forms.models import model_to_dict
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, render_to_response
-from django.template import RequestContext
-
+from django.shortcuts import render
+from django.core import serializers
 
 def sign_up(request):
     if request.method == "GET":
@@ -72,9 +73,17 @@ def login(request):
         validation = user_functions.validate_login(user_name, password)
 
         if validation is True:
-            all_nationality = Nationality.objects.all()
-            userData = user_functions.find_all_user_data(user_name)
-            return render_to_response('app/profile.html',{'userData': userData, 'all_nationality': all_nationality})
+            user_data = user_functions.find_all_user_data(user_name)
+            login_data = model_to_dict(user_data['user'])
+            user_type_data = model_to_dict(user_data['userType'])
+            nationality_data = model_to_dict(user_data['nationality'])
+            user_info_data = serializers.serialize('json',[user_data['userInfo']])
+            user_info_data = json.loads(user_info_data)[0]
+            request.session['login_data'] = login_data
+            request.session['user_info_data'] = user_info_data
+            request.session['user_type_data'] = user_type_data
+            request.session['nationality_data'] = nationality_data
+            return render(request, 'app/profile.html')
         else:
             messages.error(request, 'Username or password is wrong, try again')
             return HttpResponseRedirect('/')
@@ -86,15 +95,37 @@ def logout(request):
 
 def profile(request):
     try:
-        userData = user_functions.find_all_user_data(userData.user.user_name)
-        return render_to_response('app/profile.html', {'userData': userData})
+        if request.method == "GET":
+            userData = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+            return render(request, 'app/profile.html')
     except Exception:
         messages.error(request,'Please login to access your profile')
         return HttpResponseRedirect('/')
 
+
+def edit_profile(request):
+    try:
+        if request.method == "GET":
+            userData = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+            all_nationality = Nationality.objects.all()
+            return render(request, 'app/editprofile.html', {'all_nationality': all_nationality})
+        elif request.method == "POST":
+            user_id = request.POST.get('user_id')
+            user_name = request.POST.get('user_name')
+            n_user_name = user_functions.update_user_name(user_name, user_id)
+            if n_user_name is True:
+                #messages.success(request,'User updated')
+                return render(request, 'app/profile.html')
+            else:
+                messages.error(request,'User not updated')
+                return HttpResponseRedirect('/')
+    except Exception:
+        messages.error(request,'Please login to access this area')
+        return HttpResponseRedirect('/')
+
 def rooms_details(request, room_id):
     room = rooms_functions.find_all_room_data(room_id)
-    return render_to_response('app/roomsdetails.html',{'room': room})
+    return render(request,'app/roomsdetails.html',{'room': room})
 
 
 def home(request):
