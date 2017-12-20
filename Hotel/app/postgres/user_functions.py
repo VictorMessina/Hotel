@@ -1,5 +1,5 @@
 import hashlib
-from app.models import User, UserInfo
+from app.models import User, UserInfo, UserType, Nationality
 from app.postgres import user_privileges_functions
 
 
@@ -19,7 +19,9 @@ def find_all_user_data(user_name):
     try:
         user = User.objects.get(user_name = user_name)
         userInfo = UserInfo.objects.select_related().get(user_info_id = user.user_id)
-        data = {'user': user, 'userInfo': userInfo}
+        userType = UserType.objects.select_related().get(user_type_id = userInfo.user_info_id)
+        nationality = Nationality.objects.get(nationality_id = userType.fk_nationality_id)
+        data = {'user': user, 'userInfo': userInfo, 'userType': userType, 'nationality': nationality}
         return data
     except  User.DoesNotExist:
         print("User not found")
@@ -38,6 +40,26 @@ def find_user(user_name):
 def generate_sha256(password):
     password_hash = hashlib.sha256(str(password).encode('utf-8')).hexdigest()
     return password_hash
+
+
+
+def update_user_name(user_name, user_id):
+    try:
+        user = User.objects.get(user_id = user_id)
+        user.user_name = user_name
+        user.save()
+        return True
+    except User.DoesNotExist:
+        print("User not updated")
+        return None
+
+
+
+#def update_password(password, user_id):
+ #   user = User.objects.get(user_id = user_id)
+  #  encrypted_password = generate_sha256(password)
+   # user.password = encrypted_password
+    #user.save()
 
 
 def validate_login(user_name, password):
