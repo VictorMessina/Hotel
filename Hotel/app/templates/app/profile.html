@@ -2,6 +2,18 @@
 
 {% block title %} Profile {%endblock%}
 
+{% block messages %}
+
+    <!-- Display messages -->
+
+    {% if messages %}
+        {% for message in messages %}
+                <p class="error">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
 {% block profile_nav %}
     <li><a href="{% url 'profile' %}">profile</a></li>
     <li><a href="editprofile">edit profile</a></li>
@@ -38,7 +50,7 @@
               <div class="user-icon"><i class="fa fa-id-card"></i></div>
               <h4 class="user-title"><a href=""> Personal information </a></h4>
               <p class="user-description">
-                    Firts Name: {{request.session.user_info_data.fields.first_name}}
+                    First Name: {{request.session.user_info_data.fields.first_name}}
                     <br/><br/>
                     Last Name: {{request.session.user_info_data.fields.last_name}}
                     <br/><br/>
