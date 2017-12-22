@@ -42,7 +42,6 @@ def generate_sha256(password):
     return password_hash
 
 
-
 def update_user_name(user_name, user_id):
     try:
         user = User.objects.get(user_id = user_id)
@@ -50,16 +49,23 @@ def update_user_name(user_name, user_id):
         user.save()
         return True
     except User.DoesNotExist:
-        print("User not updated")
+        print("User name not updated")
         return None
 
 
-
-#def update_password(password, user_id):
- #   user = User.objects.get(user_id = user_id)
-  #  encrypted_password = generate_sha256(password)
-   # user.password = encrypted_password
-    #user.save()
+def update_password(password, confirm_password, user_id):
+    try:
+        if password == confirm_password:
+            user = User.objects.get(user_id = user_id)
+            encrypted_password = generate_sha256(password)
+            user.password = encrypted_password
+            user.save()
+            return True
+        else:
+            return None
+    except User.DoesNotExist:
+        print("password not updated")
+        return None
 
 
 def validate_login(user_name, password):
@@ -73,4 +79,3 @@ def validate_login(user_name, password):
                 return False
     else:
         return False
- 
