@@ -1,5 +1,5 @@
 import hashlib
-from app.models import User
+from app.models import User, UserInfo, UserType, Nationality
 from app.postgres import user_privileges_functions
 
 
@@ -13,6 +13,20 @@ def create_user(user_name, password, description):
     except Exception:
         print("user not registered")
         return None
+
+
+def find_all_user_data(user_name):
+    try:
+        user = User.objects.get(user_name = user_name)
+        userInfo = UserInfo.objects.select_related().get(user_info_id = user.user_id)
+        userType = UserType.objects.select_related().get(user_type_id = userInfo.user_info_id)
+        nationality = Nationality.objects.get(nationality_id = userType.fk_nationality_id)
+        data = {'user': user, 'userInfo': userInfo, 'userType': userType, 'nationality': nationality}
+        return data
+    except  User.DoesNotExist:
+        print("User not found")
+        return None
+
 
 def find_user(user_name):
     try:
@@ -28,6 +42,32 @@ def generate_sha256(password):
     return password_hash
 
 
+def update_user_name(user_name, user_id):
+    try:
+        user = User.objects.get(user_id = user_id)
+        user.user_name = user_name
+        user.save()
+        return True
+    except User.DoesNotExist:
+        print("User name not updated")
+        return None
+
+
+def update_password(password, confirm_password, user_id):
+    try:
+        if password == confirm_password:
+            user = User.objects.get(user_id = user_id)
+            encrypted_password = generate_sha256(password)
+            user.password = encrypted_password
+            user.save()
+            return True
+        else:
+            return None
+    except User.DoesNotExist:
+        print("password not updated")
+        return None
+
+
 def validate_login(user_name, password):
     user_information = find_user(user_name)
     password_hash = generate_sha256(password)
@@ -39,4 +79,3 @@ def validate_login(user_name, password):
                 return False
     else:
         return False
- 

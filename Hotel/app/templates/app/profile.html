@@ -1,11 +1,87 @@
-﻿<!DOCTYPE html>
+﻿{% extends 'app/layout.html' %}
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Profile</title>
-</head>
-<body>
+{% block title %} Profile {%endblock%}
 
-</body>
-</html>
+{% block messages %}
+
+    <!-- Display messages -->
+
+    {% if messages %}
+        {% for message in messages %}
+                <p class="error">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+{% block profile_nav %}
+    <li><a href="{% url 'profile' %}">profile</a></li>
+    <li><a href="editprofile">edit profile</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
+<!--========================== User Section ============================ -->
+
+   <section id="user">
+
+        <div class="container wow fadeInUp">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="section-title">Profile</h3>
+              <div class="section-title-divider"></div>
+              <p class="section-description"> See your personal informations </p>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4 user-item">
+              <div class="user-icon"><i class="fa fa-user"></i></div>
+              <h4 class="user-title"><a href=""> Login information </a></h4>
+              <p class="user-description">
+                    User Name: {{request.session.login_data.user_name}}
+                    <br/><br/>
+              </p>
+            </div>
+
+            <div class="col-md-4 user-item">
+              <div class="user-icon"><i class="fa fa-id-card"></i></div>
+              <h4 class="user-title"><a href=""> Personal information </a></h4>
+              <p class="user-description">
+                    First Name: {{request.session.user_info_data.fields.first_name}}
+                    <br/><br/>
+                    Last Name: {{request.session.user_info_data.fields.last_name}}
+                    <br/><br/>
+                    Email: {{request.session.user_info_data.fields.email}}
+                    <br/><br/>
+                    Telephone: {{request.session.user_info_data.fields.telephone}}
+                    <br/><br/>
+                    Cellphone: {{request.session.user_info_data.fields.cellphone}}
+                    <br/><br/>
+                    Gender: {{request.session.user_info_data.fields.gender}}
+                    <br/><br/>
+                    Birthday: {{request.session.user_info_data.fields.birthday}} </p>
+            </div>
+
+            <div class="col-md-4 user-item">
+              <div class="user-icon"><i class="fa fa-id-card"></i></div>
+              <h4 class="user-title"><a href=""> Identification </a></h4>
+              <p class="user-description">
+                 Identification number: {{request.session.user_type_data.identification_number}}
+                 <br/><br/>
+                {% if request.session.user_type_data.resident is False %}
+                        Resident: No
+                    {% elif request.session.user_type_data.resident is True %}
+                        Resident: Yes
+                {% endif %}
+                <br/><br/>
+                Last Address: {{request.session.user_type_data.last_address}}
+                <br/><br/>
+                Nationality: {{request.session.nationality_data.country}} </p>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

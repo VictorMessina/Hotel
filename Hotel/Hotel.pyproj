@@ -105,6 +105,7 @@
     <Content Include="app\static\app\img\client-1.jpg" />
     <Content Include="app\static\app\img\client-2.jpg" />
     <Content Include="app\static\app\img\hero-bg.jpg" />
+    <Content Include="app\static\app\img\hotel-icon.png" />
     <Content Include="app\static\app\img\logo.png" />
     <Content Include="app\static\app\img\Messina.JPG" />
     <Content Include="app\static\app\img\not-available.jpg" />
@@ -150,6 +151,7 @@
     <Content Include="app\static\app\lib\wow\wow.js" />
     <Content Include="app\static\app\lib\wow\wow.min.js" />
     <Content Include="app\static\app\scripts\custom.js" />
+    <Content Include="app\templates\app\editprofile.html" />
     <Content Include="app\templates\app\roomsdetails.html" />
     <Content Include="app\templates\app\signup.html" />
     <Content Include="app\templates\app\profile.html" />
@@ -176,12 +178,8 @@
     <Content Include="app\static\app\scripts\respond.js" />
     <Content Include="app\static\app\scripts\respond.min.js" />
     <Content Include="app\static\app\scripts\_references.js" />
-    <Content Include="app\templates\app\about.html" />
-    <Content Include="app\templates\app\contact.html" />
     <Content Include="app\templates\app\index.html" />
     <Content Include="app\templates\app\layout.html" />
-    <Content Include="app\templates\app\login.html" />
-    <Content Include="app\templates\app\loginpartial.html" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.5" />
