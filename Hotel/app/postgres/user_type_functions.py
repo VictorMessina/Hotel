@@ -18,3 +18,27 @@ def find_user_type_by_identification_number(identification_number):
     except UserType.DoesNotExist:
         print("user type not exist")
         return None
+
+
+def update_nationality(identification_number, resident, nationality_id, user_type_id):
+    try:
+        user_type = UserType.objects.get(user_type_id = user_type_id)
+        user_type.identification_number = identification_number
+        user_type.resident = resident
+        user_type.fk_nationality_id = nationality_id
+        user_type.save()
+        return True
+    except UserType.DoesNotExist:
+        print("Nationality not updated")
+        return None
+
+
+def update_last_address(last_address, user_type_id):
+    try:
+        user_type = UserType.objects.get(user_type_id = user_type_id)
+        user_type.last_address = last_address
+        user_type.save()
+        return True
+    except UserType.DoesNotExist:
+        print("Last address not updated")
+        return None
