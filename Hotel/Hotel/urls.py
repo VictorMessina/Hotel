@@ -17,6 +17,7 @@ import app.views
 
 urlpatterns = [
     # Examples:
+    url(r'^admfunctions$', app.views.admfunctions, name='admfunctions'),
     url(r'^signup$', app.views.sign_up, name='signup'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
     url(r'^profile$', app.views.profile, name='profile'),
