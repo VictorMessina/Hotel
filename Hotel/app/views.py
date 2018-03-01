@@ -93,6 +93,17 @@ def login(request):
             return HttpResponseRedirect('/')
 
 
+
+def admfunctions(request):
+    try:
+        if request.method == "GET":
+            userData = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+            return render(request, 'app/admfunctions.html')
+    except Exception:
+        messages.error(request,'Please login to adm account to have access')
+        return HttpResponseRedirect('/')
+
+
 def logout(request):
     logout(request)
 
