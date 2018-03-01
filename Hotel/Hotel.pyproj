@@ -91,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\static\app\content\messages.css" />
-    <Content Include="app\static\app\content\sign_up_style.css" />
     <Content Include="app\static\app\content\style.css" />
     <Content Include="app\static\app\content\style.scss" />
     <Content Include="app\static\app\content\_footer.scss" />
