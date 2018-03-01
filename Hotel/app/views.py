@@ -83,7 +83,11 @@ def login(request):
             request.session['user_info_data'] = user_info_data
             request.session['user_type_data'] = user_type_data
             request.session['nationality_data'] = nationality_data
-            return render(request, 'app/profile.html')
+
+            if user_data['user'].fk_user_privileges_id != 1:
+                return render(request, 'app/profile.html')
+            else:
+                return render(request,'app/admfunctions.html')
         else:
             messages.error(request, 'Username or password is wrong, try again')
             return HttpResponseRedirect('/')
