@@ -1,96 +1,143 @@
-﻿<!DOCTYPE html>
+﻿{% extends 'app/layout.html' %}
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <!-- Main Stylesheet File -->
-        {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href=" {% static 'app/content/sign_up_style.css' %}" />
-        <title>Sign Up</title>
+{% block title %} Sign up {%endblock%}
 
-        <script type="text/javascript">
-            var pNumber;
-            var cNumber;
-            window.onload = function () {
-                pNumber = document.getElementById("pNumber");
-                cNumber = document.getElementById("cNumber");
-                pNumber.style.display = "none";
+{% block scripts %}
+
+    <style>
+        /*----------BOTÕES---------*/
+        input[type="submit"],
+        #botao {
+            transition: background-color 0.35s ease-in-out;
+            background: #6CA6CD;
+            border-radius: 6px;
+            border-style: outset;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        input[type="submit"]:hover,
+        #botao:hover {
+            background: #FF7700;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var pNumber;
+        var cNumber;
+        window.onload = function () {
+            pNumber = document.getElementById("pNumber");
+            cNumber = document.getElementById("cNumber");
+            pNumber.style.display = "none";
+            cNumber.style.display = "none";
+        };
+
+        function show(num) {
+            if (num === 1) {
+                pNumber.style.display = "block";
                 cNumber.style.display = "none";
-            };
-
-            function show(num) {
-                if (num === 1) {
-                    pNumber.style.display = "block";
-                    cNumber.style.display = "none";
-                } else if (num === 2) {
-                    cNumber.style.display = "block";
-                    pNumber.style.display = "none";
-                }
+            } else if (num === 2) {
+                cNumber.style.display = "block";
+                pNumber.style.display = "none";
             }
-        </script>
-    </head>
-    <body>
-        <!-- Display messages -->
+        }
+    </script>
 
-        {% if messages %}
-            {% for message in messages %}
-                {{message}}
-            {% endfor %}
-        {% endif %}
+{% endblock %}
 
-        <h1> Insira os dados da sua conta: </h1>
+{% block messages %}
 
+    <!-- Display messages -->
+
+    {% if messages %}
+        {% for message in messages %}
+                <p class="error">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+{% block standard_nav %}
+    <a href="/">home</a>
+{% endblock %}
+
+{% block body %}
+
+<!--========================== Sign up Section ============================ -->
+
+    <section id="signUp">
         <form method="post">
             {% csrf_token %}
-            <div class="row">
-                <div class="block">
-                    <h3>User information</h3>
-                    <p> Login: <input type="text" name="user_name" placeholder="user_name" maxlength="10" required/> </p>
-                    <p> Password: <input type="password" name="password"  placeholder="password" required/> </p>
-                    <p> Confirm password: <input type="password" name="password2" placeholder="confirme password" required/> </p>
+            <div class="container wow fadeInUp">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="section-title">Sign up</h3>
+                  <div class="section-title-divider"></div>
+                  <p class="section-description"> Input your data to signUp </p>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-4 user-item">
+                  <div class="user-icon"><i class="fa fa-user"></i></div>
+                  <h4 class="user-title"><a href=""> Login information </a></h4>
+                  <p class="user-description">
+                        <br/><br/>
+                        <p> Login: <input type="text" name="user_name" placeholder="user_name" maxlength="10" required/> </p>
+                        <p> Password: <input type="password" name="password"  placeholder="password" required/> </p>
+                        <p> Confirm password: <input type="password" name="password2" placeholder="confirme password" required/> </p>
+                  </p>
+                </div>
+
+                <div class="col-md-4 user-item">
+                  <div class="user-icon"><i class="fa fa-id-card"></i></div>
+                  <h4 class="user-title"><a href=""> Personal information </a></h4>
+                  <p class="user-description">
+                      <br/><br/>
+                        <p> First Name: <input type="text" name="first_name" placeholder="first_name" required/></p>
+                        <p> Last Name: <input  type="text" name="last_name" placeholder="last_name" required/></p>
+                        <p> Email: <input type="email" name="email"  placeholder="email" required/></p>
+                        <p> Telephone: <input type="tel" name="telephone" placeholder="telephone" required/></p>
+                        <p> Cellphone: <input type="tel" name="cellphone" placeholder="cellphone" required/></p>
+                        <p> Birthday: <input type="date" name="birthday" placeholder="dd/mm/yyyy" required></p>
+                        <p> Gender:
+                         <input type="radio" name="gender" value="masculino" /> Masculino
+                         <input type="radio" name="gender" value="feminino" /> Feminino </p>
+                </div>
+
+                <div class="col-md-4 user-item">
+                  <div class="user-icon"><i class="fa fa-id-card"></i></div>
+                  <h4 class="user-title"><a href=""> Nationality and Address Details </a></h4>
+                  <p class="user-description">
+                        <p> Choose your Nationality: <select name="nationality" required>
+                            {% for nationality in all_nationality %}
+                                <option value="{{nationality.nationality_id}}">{{nationality.country}}</option>
+                            {% endfor %}
+                            </select>
+                        </p>
+
+                        <p> <input  onclick="show(1)" type="radio" name="resident" value="False" /> Foreigner </p>
+                        <p> <input  onclick="show(2)" type="radio" name="resident" value="True" /> Resident </p>
+
+                        <div id="pNumber">
+                            <p> Passport Number: <input type="text" name="identification_number_passport" placeholder="passport number" /> </p>
+                        </div>
+
+                        <div id="cNumber">
+                            <p> Citizen Number: <input type="text" name="identification_number_citizen_card" placeholder="citizen number" minlength="8" maxlength="8"  /> </p>
+                        </div>
+
+                        <p> Last Address: <input type="text" name="last_address" placeholder="last_address" required/></p>
+                        <input type="hidden" name="description" value="cliente"/>
+                        <input type="submit" value="Sign Up">
                 </div>
             </div>
-
-            <div class="row">
-                <div class="block">
-                    <h3>Nationality and Address Details</h3>
-                            <p> Choose your Nationality: <select name="nationality" required>
-                                {% for nationality in all_nationality %}
-                                    <option value="{{nationality.nationality_id}}">{{nationality.country}}</option>
-                                {% endfor %}
-                        </select>
-                    </p>
-
-                    <p> <input  onclick="show(1)" type="radio" name="resident" value="False" /> Foreigner </p>
-                    <p> <input  onclick="show(2)" type="radio" name="resident" value="True" /> Resident </p>
-
-                    <div id="pNumber">
-                        <p> Passport Number: <input type="text" name="identification_number_passport" placeholder="passport number" /> </p>
-                    </div>
-
-                    <div id="cNumber">
-                        <p> Citizen Number: <input type="text" name="identification_number_citizen_card" placeholder="citizen number" minlength="8" maxlength="8"  /> </p>
-                    </div>
-
-                    <p> Last Address: <input type="text" name="last_address" placeholder="last_address" required/></p>
-                </div>
             </div>
-
-            <div class="row">
-                <div class="block">
-                    <h3>Personal Details</h3>
-                    <p> First Name: <input type="text" name="first_name" placeholder="first_name" required/></p>
-                    <p> Last Name: <input  type="text" name="last_name" placeholder="last_name" required/></p>
-                    <p> Email: <input type="email" name="email"  placeholder="email" required/></p>
-                    <p> Telephone: <input type="tel" name="telephone" placeholder="telephone" required/></p>
-                    <p> Cellphone: <input type="tel" name="cellphone" placeholder="cellphone" required/></p>
-                    <p> Birthday <input type="date" name="birthday" placeholder="dd/mm/yyyy" required></p>
-                    <p> <input type="radio" name="gender" value="masculino" /> Masculino </p>
-                    <p> <input type="radio" name="gender" value="feminino" /> Feminino </p>
-                    <input type="hidden" name="description" value="cliente"/>
-                </div>
-            </div>
-            <input type="submit" value="Sign Up">
-        </form>
-    </body>
-</html>
+            </form>
+      </section>
+{% endblock %}
