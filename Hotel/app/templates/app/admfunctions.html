@@ -1,0 +1,232 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block title %} Adm functions {%endblock%}
+
+{% block scripts %}
+
+    <style>
+        /*----------BOTÕES---------*/
+        input[type="submit"],
+        #botao {
+            transition: background-color 0.35s ease-in-out;
+            background: #6CA6CD;
+            border-radius: 6px;
+            border-style: outset;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        input[type="submit"]:hover,
+        #botao:hover {
+            background: #FF7700;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var form1;
+        var form2;
+        var form3;
+        var form4;
+        var form5;
+        var form6;
+        var form7;
+        var form8;
+        var form9;
+        var form10;
+        var form11;
+
+        var pNumber;
+        var cNumber;
+
+        window.onload = function () {
+            form1 = document.getElementById("form1");
+            form2 = document.getElementById("form2");
+            form3 = document.getElementById("form3");
+            form4 = document.getElementById("form4");
+            form5 = document.getElementById("form5");
+            form6 = document.getElementById("form6");
+            form7 = document.getElementById("form7");
+            form8 = document.getElementById("form8");
+            form9 = document.getElementById("form9");
+            form10 = document.getElementById("form10");
+            form11 = document.getElementById("form11");
+
+            pNumber = document.getElementById("pNumber");
+            cNumber = document.getElementById("cNumber");
+
+            form1.style.display = "none";
+            form2.style.display = "none";
+            form3.style.display = "none";
+            form4.style.display = "none";
+            form5.style.display = "none";
+            form6.style.display = "none";
+            form7.style.display = "none";
+            form8.style.display = "none";
+            form9.style.display = "none";
+            form10.style.display = "none";
+            form11.style.display = "none";
+
+            pNumber.style.display = "none";
+            cNumber.style.display = "none";
+        };
+
+        function mostrar(num) {
+            if (num === 1) {
+                form1.style.display = "block";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 2) {
+                form2.style.display = "block";
+                form1.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 3) {
+                form3.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 4) {
+                form4.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 5) {
+                form5.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form4.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 6) {
+                form6.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 7) {
+                form7.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 8) {
+                form8.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 9) {
+                form9.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 10) {
+                form10.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 11) {
+                form11.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+            }
+            else if (num === 12) {
+                pNumber.style.display = "block";
+                cNumber.style.display = "none";
+            }
+            else if (num === 13) {
+                cNumber.style.display = "block";
+                pNumber.style.display = "none";
+            }
+        };
+    </script>
+
+{% endblock %}
+
+{% block adm_nav %}
+    <li><a href="admfunctions">adm functions</a></li>
+    <li><a href="roomsfunctions">rooms functions</a></li>
+    <li><a href="userfunctions">user functions</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
