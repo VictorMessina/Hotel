@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
     url(r'^profile$', app.views.profile, name='profile'),
     url(r'^editprofile$', app.views.edit_profile, name='edit_profile'),
+    url(r'^userfunctions$', app.views.edit_profile, name='userfunctions'),
     url(r'^roomsdetails/(?P<room_id>\d+)$', app.views.rooms_details, name='rooms_details'),
     url(r'^$', app.views.login, name='login'),
     #url(r'^login/$',
