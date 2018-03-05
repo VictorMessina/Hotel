@@ -1,0 +1,474 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block title %} Adm user functions {% endblock %}
+
+{% block scripts %}
+
+    <style>
+        /*----------BOTÕES---------*/
+        input[type="submit"],
+        #botao {
+            transition: background-color 0.35s ease-in-out;
+            background: #6CA6CD;
+            border-radius: 6px;
+            border-style: outset;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        input[type="submit"]:hover,
+        #botao:hover {
+            background: #FF7700;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var form1;
+        var form2;
+        var form3;
+        var form4;
+        var form5;
+        var form6;
+        var form7;
+        var form8;
+        var form9;
+        var form10;
+        var form11;
+
+        var pNumber;
+        var cNumber;
+
+        window.onload = function () {
+            form1 = document.getElementById("form1");
+            form2 = document.getElementById("form2");
+            form3 = document.getElementById("form3");
+            form4 = document.getElementById("form4");
+            form5 = document.getElementById("form5");
+            form6 = document.getElementById("form6");
+            form7 = document.getElementById("form7");
+            form8 = document.getElementById("form8");
+            form9 = document.getElementById("form9");
+            form10 = document.getElementById("form10");
+            form11 = document.getElementById("form11");
+
+            pNumber = document.getElementById("pNumber");
+            cNumber = document.getElementById("cNumber");
+
+            form1.style.display = "none";
+            form2.style.display = "none";
+            form3.style.display = "none";
+            form4.style.display = "none";
+            form5.style.display = "none";
+            form6.style.display = "none";
+            form7.style.display = "none";
+            form8.style.display = "none";
+            form9.style.display = "none";
+            form10.style.display = "none";
+            form11.style.display = "none";
+
+            pNumber.style.display = "none";
+            cNumber.style.display = "none";
+        };
+
+        function mostrar(num) {
+            if (num === 1) {
+                form1.style.display = "block";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 2) {
+                form2.style.display = "block";
+                form1.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 3) {
+                form3.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 4) {
+                form4.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 5) {
+                form5.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form4.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 6) {
+                form6.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 7) {
+                form7.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 8) {
+                form8.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 9) {
+                form9.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form10.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 10) {
+                form10.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form11.style.display = "none";
+            } else if (num === 11) {
+                form11.style.display = "block";
+                form1.style.display = "none";
+                form2.style.display = "none";
+                form3.style.display = "none";
+                form4.style.display = "none";
+                form5.style.display = "none";
+                form6.style.display = "none";
+                form7.style.display = "none";
+                form8.style.display = "none";
+                form9.style.display = "none";
+                form10.style.display = "none";
+            }
+            else if (num === 12) {
+                pNumber.style.display = "block";
+                cNumber.style.display = "none";
+            }
+            else if (num === 13) {
+                cNumber.style.display = "block";
+                pNumber.style.display = "none";
+            }
+        };
+    </script>
+
+{% endblock %}
+
+{% block adm_nav %}
+    <li><a href="admfunctions">adm functions</a></li>
+    <li><a href="roomsfunctions">rooms functions</a></li>
+    <li><a href="userfunctions">user functions</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
+<!-- Display messages -->
+
+{% if messages %}
+    {% for message in messages %}
+            <p class="error">{{message}}</p>
+    {% endfor %}
+{% endif %}
+
+<!--========================== Edit Section ============================ -->
+
+    <section id="editProfile">
+
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Edit User</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description"> Edit your personal informations
+                        <br/><br/>
+                        <button id="botao" onclick="mostrar(1)"> update user name </button>
+                        <button id="botao" onclick="mostrar(2)"> update password </button>
+                        <button id="botao" onclick="mostrar(3)"> update first name </button>
+                        <button id="botao" onclick="mostrar(4)"> update last name </button>
+                        <button id="botao" onclick="mostrar(5)"> update email </button>
+                        <button id="botao" onclick="mostrar(6)"> update telephone </button>
+                        <button id="botao" onclick="mostrar(7)"> update cellphone </button>
+                        <button id="botao" onclick="mostrar(8)"> update gender </button>
+                        <button id="botao" onclick="mostrar(9)"> update birthday </button>
+                        <br><br><br>
+                        <button id="botao" onclick="mostrar(10)"> update nationality data </button>
+                        <button id="botao" onclick="mostrar(11)"> update last address </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+				<!-- Update user name -->
+				<form id="form1" method="post">
+                    {% csrf_token %}
+					<h3> Update user name </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New user name: <input type="text" name="user_name" placeholder="New user name" maxlength="10" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="1"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+                <!-- Update password -->
+				<form id="form2" method="post">
+                    {% csrf_token %}
+					<h3> Update password </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New password: <input type="password" name="password" placeholder="new password" required="required"/> </p>
+					<p> Confirm new password: <input type="password" name="confirm_password" placeholder="confirm new password" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="2"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+				<!-- Update first name -->
+				<form id="form3" method="post">
+                    {% csrf_token %}
+					<h3> Update first name </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New first name: <input type="text" name="first_name" placeholder="first name" maxlength="20" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="3"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+                <!-- Update last name -->
+				<form id="form4" method="post">
+                    {% csrf_token %}
+					<h3> Update last name </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New last name: <input type="text" name="last_name" placeholder="last name" maxlength="20" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="4"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+				<!-- Update email -->
+				<form id="form5" method="post">
+                    {% csrf_token %}
+					<h3> Update e-mail </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New e-mail: <input type="email" name="email" placeholder="email@email.com" maxlength="50" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="5"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+				<!-- Update telephone -->
+				<form id="form6" method="post">
+                    {% csrf_token %}
+					<h3> Update telephone </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New telephone number: <input type="tel" name="telephone" placeholder="99999999" maxlength="12" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="6"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+                <!-- Update cellphone -->
+				<form id="form7" method="post">
+                    {% csrf_token %}
+					<h3> Update cellphone </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<p> New cellphone number: <input type="tel" name="cellphone" placeholder="99999999" maxlength="12" required="required"/> </p>
+                    <p> <input type="hidden" name="function_id" value="7"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+				<!-- Update gender -->
+				<form id="form8" method="post">
+                    {% csrf_token %}
+					<h3> Update gender </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+                    <p> <input type="radio" name="gender" value="masculino" /> Masculino </p>
+                    <p> <input type="radio" name="gender" value="feminino" /> Feminino </p>
+                    <p> <input type="hidden" name="function_id" value="8"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+                <!-- Update birthday -->
+				<form id="form9" method="post">
+                    {% csrf_token %}
+					<h3> Update birthday  </h3>
+                    <p> Choose user: <select name="user_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+                    <p> New birthday <input type="date" name="birthday" placeholder="dd/mm/yyyy" required></p>
+                    <p> <input type="hidden" name="function_id" value="9"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+                <!-- Update nationality data -->
+				<form id="form10" method="post">
+                    {% csrf_token %}
+                    <p> Choose user: <select name="user_type_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+                    <p> Choose your Nationality: <select name="nationality_id" required>
+                        {% for nationality in all_nationality %}
+                            <option value="{{nationality.nationality_id}}">{{nationality.country}}</option>
+                        {% endfor %}
+                        </select>
+                    </p>
+
+                    <p> <input  onclick="mostrar(12)" type="radio" name="resident" value="False" /> Foreigner </p>
+                    <p> <input  onclick="mostrar(13)" type="radio" name="resident" value="True" /> Resident </p>
+
+                    <div id="pNumber">
+                        <p> Passport Number: <input type="text" name="identification_number_passport" placeholder="passport number" /> </p>
+                    </div>
+
+                    <div id="cNumber">
+                        <p> Citizen Number: <input type="text" name="identification_number_citizen_card" placeholder="citizen number" minlength="8" maxlength="8"  /> </p>
+                    </div>
+                    <p> <input type="hidden" name="function_id" value="10"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+
+                <!-- Update last address -->
+				<form id="form11" method="post">
+                    {% csrf_token %}
+                    <p> Choose user: <select name="user_type_id" required>
+                        {% for user in all_users %}
+                            {% if user.user_id != 1 %}
+                                <option value="{{user.user_id}}">{{user.user_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </p>
+					<h3> Update last address </h3>
+					<p> New last address: <input type="text" name="last_address" placeholder="last address" required="required"> </p>
+                    <p> <input type="hidden" name="function_id" value="11"/> </p>
+                    <p> <input type="submit" value="update"/> </p>
+				</form>
+        </div>
+    </section>
+{% endblock %}
