@@ -150,10 +150,12 @@
     <Content Include="app\static\app\lib\wow\wow.js" />
     <Content Include="app\static\app\lib\wow\wow.min.js" />
     <Content Include="app\static\app\scripts\custom.js" />
+    <Content Include="app\templates\app\admfunctions.html" />
     <Content Include="app\templates\app\editprofile.html" />
     <Content Include="app\templates\app\roomsdetails.html" />
     <Content Include="app\templates\app\signup.html" />
     <Content Include="app\templates\app\profile.html" />
+    <Content Include="app\templates\app\userfunctions.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
