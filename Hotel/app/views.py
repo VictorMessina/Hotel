@@ -97,7 +97,7 @@ def login(request):
 def admfunctions(request):
     try:
         if request.method == "GET":
-            userData = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+            user_data = user_functions.find_all_user_data(request.session['login_data']['user_name'])
             return render(request, 'app/admfunctions.html')
     except Exception:
         messages.error(request,'Please login to adm account to have access')
@@ -111,7 +111,7 @@ def logout(request):
 def profile(request):
     try:
         if request.method == "GET":
-            userData = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+            user_data = user_functions.find_all_user_data(request.session['login_data']['user_name'])
             return render(request, 'app/profile.html')
     except Exception:
         messages.error(request,'Please login to access your profile')
@@ -123,9 +123,14 @@ def edit_profile(request):
 
         if request.method == "GET":
 
-            userData = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+            user_data = user_functions.find_all_user_data(request.session['login_data']['user_name'])
             all_nationality = Nationality.objects.all()
-            return render(request, 'app/editprofile.html', {'all_nationality': all_nationality})
+            all_users = User.objects.all()
+
+            if user_data['user'].fk_user_privileges_id != 1:
+                return render(request, 'app/editprofile.html', {'all_nationality': all_nationality})
+            else:
+                return render(request, 'app/userfunctions.html',{'all_nationality': all_nationality, 'all_users': all_users})
 
         elif request.method == "POST":
 
@@ -201,25 +206,38 @@ def edit_profile(request):
 
             if update_validation is True:
 
-                if function_id == 1:
-                    user_data = user_functions.find_all_user_data(user_name)
-                else:
-                    user_data = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+                if request.session['login_data']['fk_user_privileges'] != 1:
 
-                messages.success(request,'User updated')
-                login_data = model_to_dict(user_data['user'])
-                user_type_data = model_to_dict(user_data['userType'])
-                nationality_data = model_to_dict(user_data['nationality'])
-                user_info_data = serializers.serialize('json',[user_data['userInfo']])
-                user_info_data = json.loads(user_info_data)[0]
-                request.session['login_data'] = login_data
-                request.session['user_info_data'] = user_info_data
-                request.session['user_type_data'] = user_type_data
-                request.session['nationality_data'] = nationality_data
-                return render(request, 'app/profile.html')
+                    if function_id == 1:
+                        user_data = user_functions.find_all_user_data(user_name)
+                    else:
+                        user_data = user_functions.find_all_user_data(request.session['login_data']['user_name'])
+
+                        messages.success(request,'User updated')
+                        login_data = model_to_dict(user_data['user'])
+                        user_type_data = model_to_dict(user_data['userType'])
+                        nationality_data = model_to_dict(user_data['nationality'])
+                        user_info_data = serializers.serialize('json',[user_data['userInfo']])
+                        user_info_data = json.loads(user_info_data)[0]
+                        request.session['login_data'] = login_data
+                        request.session['user_info_data'] = user_info_data
+                        request.session['user_type_data'] = user_type_data
+                        request.session['nationality_data'] = nationality_data
+                        return render(request, 'app/profile.html')
+                else:
+                    messages.success(request,'User updated')
+                    all_nationality = Nationality.objects.all()
+                    all_users = User.objects.all()
+                    return render(request,'app/userfunctions.html',{'all_nationality': all_nationality, 'all_users': all_users})
             else:
-                messages.error(request,'User not updated')
-                return HttpResponseRedirect('/profile')
+                if request.session['login_data']['fk_user_privileges'] != 1:
+                    messages.error(request,'User not updated')
+                    return HttpResponseRedirect('/profile')
+                else:
+                    messages.error(request,'User not updated')
+                    all_nationality = Nationality.objects.all()
+                    all_users = User.objects.all()
+                    return render(request,'app/userfunctions.html',{'all_nationality': all_nationality, 'all_users': all_users})
     except Exception:
         messages.error(request,'Please login to access this area')
         return HttpResponseRedirect('/')
